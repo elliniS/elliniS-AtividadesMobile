@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Fragmentos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="fragmento_a">Fragmento A</string>
+    <string name="fragmento_b">Fragmento B</string>
+    <string name="fragmento_c">Fragmento C</string>
+    <string name="btnquadrado">Quadrado</string>
+    <string name="btntriangulo">Triangulo</string>
+    <string name="btncirculo">Circulo</string>
+    <string name="bntvoltar">Voltar</string>
+</resources>
