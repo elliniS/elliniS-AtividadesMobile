@@ -26,10 +26,30 @@ public class NotaDao {
         nota.setId(i);
         return nota;
     }
+
     @SuppressLint("Range")
     public ArrayList<Nota> getListaNotas() {
         Cursor c = database.rawQuery("SELECT * FROM notas", null);
         ArrayList<Nota> result = new ArrayList<>();
+
+        c.moveToFirst();
+        while (!c.isAfterLast()){
+            Nota nota = new Nota(c.getInt(c.getColumnIndex("id")),
+                    c.getString(c.getColumnIndex("titulo")),
+                    c.getString(c.getColumnIndex("texto")));
+            result.add(nota);
+            c.moveToNext();
+        }
+        return result;
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<Nota> getListaNotas(String pesguisa) {
+        String sql = "SELECT * FROM notas WHERE titulo LIKE ?";
+
+        Cursor c = database.rawQuery(sql, new String[] {"%" + pesguisa + "%"});
+        ArrayList<Nota> result = new ArrayList<>();
+
 
         c.moveToFirst();
         while (!c.isAfterLast()){

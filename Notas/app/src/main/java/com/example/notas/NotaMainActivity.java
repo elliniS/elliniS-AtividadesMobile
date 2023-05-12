@@ -3,7 +3,6 @@ package com.example.notas;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,15 +10,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.notas.controller.NotaController;
 
-public class MainNotaActivity extends AppCompatActivity implements  AdapterView.OnItemClickListener{
+public class NotaMainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, SearchView.OnQueryTextListener {
     NotaController notaController;
     ListView listView;
     ImageButton btnEdita;
-    @SuppressLint("MissingInflatedId")
+    SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,14 +27,35 @@ public class MainNotaActivity extends AppCompatActivity implements  AdapterView.
 
         notaController = new NotaController(this);
         listView = findViewById(R.id.listView);
+        searchView = findViewById(R.id.searchView);
 
         listView.setOnItemClickListener(this);
+        searchView.setOnQueryTextListener(this);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         showNotas();
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+        listView.setAdapter(
+                new ArrayNotaAdapter(
+                        getApplicationContext(),
+                        R.layout.activity_list_view,
+                        notaController.getListaNotas(newText)
+                )
+        );
+        return false;
+
     }
 
     @Override

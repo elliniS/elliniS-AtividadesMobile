@@ -35,4 +35,8 @@ public class NotaController {
     public boolean excluirNota(int id) {
         return notaDao.deleteNota(id);
     }
+
+    public ArrayList<Nota> getListaNotas(String pesguisa) {
+        return notaDao.getListaNotas(pesguisa);
+    }
 }

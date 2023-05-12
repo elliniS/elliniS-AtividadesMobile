@@ -58,7 +58,7 @@ public class ExibeNotaActivity extends AppCompatActivity {
         }
 
         Toast.makeText(this, retorno, Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, MainNotaActivity.class);
+        Intent intent = new Intent(this, NotaMainActivity.class);
         startActivity(intent);
     }
 }
