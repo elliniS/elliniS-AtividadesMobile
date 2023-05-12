@@ -34,8 +34,8 @@ public class ArrayAlimentoAdapter extends ArrayAdapter<Alimento> {
             view = layoutInflater.inflate(mLayout, parent, false);
         }
         Alimento alimento = getItem(positton);
-        TextView tvId = view.findViewById(R.id.tvId);
-        TextView tvAlimento = view.findViewById(R.id.tvAlimento);
+        TextView tvId = view.findViewById(R.id.tvIdList);
+        TextView tvAlimento = view.findViewById(R.id.tvAlimentoList);
 
         tvId.setText(Integer.toString(alimento.getId()));
         tvAlimento.setText(alimento.getAlimento());

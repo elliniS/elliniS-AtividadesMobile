@@ -61,4 +61,23 @@ public class AlimentoDao {
         }
         return result;
     }
+
+    @SuppressLint("Range")
+    public Alimento getAlimento(int id) {
+        String sql = "SELECT * FROM taco_4___edicao WHERE id = ?";
+        Cursor c = sqLiteDatabase.rawQuery(sql, new String[] {String.valueOf(id)});
+        c.moveToFirst();
+        Alimento result = new Alimento(Integer.valueOf(c.getString(c.getColumnIndex("id"))),
+                c.getString(c.getColumnIndex("Caterogia")),
+                c.getString(c.getColumnIndex("Alimento")),
+                c.getString(c.getColumnIndex("Umidade")),
+                c.getString(c.getColumnIndex("Energiakcal")),
+                c.getString(c.getColumnIndex("kJ")),
+                c.getString(c.getColumnIndex("Proteonag")),
+                c.getString(c.getColumnIndex("Lipodeosg")),
+                c.getString(c.getColumnIndex("Colesterolmg")),
+                c.getString(c.getColumnIndex("Carboidratosg")));
+
+        return result;
+    }
 }

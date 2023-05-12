@@ -23,4 +23,8 @@ public class AlimentoController {
     public ArrayList<Alimento> listaAliimentosPesquisa(String pesguisa) {
         return alimentoDao.getAlimentos(pesguisa);
     }
+
+    public Alimento getAlimento(int id) {
+        return alimentoDao.getAlimento(id);
+    }
 }

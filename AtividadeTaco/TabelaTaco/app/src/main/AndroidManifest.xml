@@ -12,6 +12,9 @@
         android:theme="@style/Theme.TabelaTaco"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityAlimento"
+            android:exported="false" />
+        <activity
             android:name=".AlimentoItem"
             android:exported="false" />
         <activity

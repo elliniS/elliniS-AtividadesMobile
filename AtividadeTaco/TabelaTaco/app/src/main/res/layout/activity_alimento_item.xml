@@ -7,25 +7,25 @@
     tools:context=".AlimentoItem">
 
     <TextView
-        android:id="@+id/tvId"
+        android:id="@+id/tvIdList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tvAlimento"
+        app:layout_constraintEnd_toStartOf="@+id/tvAlimentoList"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvAlimento"
+        android:id="@+id/tvAlimentoList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvId"
-        app:layout_constraintTop_toTopOf="@+id/tvId" />
+        app:layout_constraintStart_toEndOf="@+id/tvIdList"
+        app:layout_constraintTop_toTopOf="@+id/tvIdList" />
 </androidx.constraintlayout.widget.ConstraintLayout>
