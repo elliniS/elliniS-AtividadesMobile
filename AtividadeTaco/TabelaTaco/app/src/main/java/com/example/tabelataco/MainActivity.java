@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import com.example.tabelataco.controller.AlimentoController;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     SQLiteDatabase sqLiteDatabase;
     ListView listView;
 
+    AlimentoController alimentoController;
+
     SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         listView = findViewById(R.id.listView);
         searchView = findViewById(R.id.searchView);
-        inicializaDataBase();
+        alimentoController = new AlimentoController(this);
 
         searchView.setOnQueryTextListener(this);
     }
@@ -39,31 +43,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     protected void onStart() {
         super.onStart();
         listView.setAdapter(
-                new ArrayAdapter<>(
+                new ArrayAlimentoAdapter(
                         getApplicationContext(),
-                        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-                        listaAliimentos()
+                        R.layout.activity_alimento_item,
+                        alimentoController.listaAliimentos()
                 )
         );
    }
-
-    public void inicializaDataBase(){
-            BancoTaco bancoTaco = new BancoTaco(this);
-            sqLiteDatabase = bancoTaco.getWritableDatabase();
-    }
-
-    @SuppressLint("Range")
-    private ArrayList<String> listaAliimentos() {
-        Cursor c = sqLiteDatabase.rawQuery("SELECT * FROM taco_4___edicao", null);
-        ArrayList<String> result = new ArrayList<>();
-
-        c.moveToFirst();
-        while (!c.isAfterLast()){
-            result.add(c.getString(c.getColumnIndex("Alimento")));
-            c.moveToNext();
-        }
-        return result;
-    }
     @Override
     public boolean onQueryTextSubmit(String query) {
         return false;
@@ -72,27 +58,12 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public boolean onQueryTextChange(String newText) {
         listView.setAdapter(
-                new ArrayAdapter<>(
+                new ArrayAlimentoAdapter(
                         getApplicationContext(),
-                        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-                        listaAliimentosPesquisa(newText)
+                        R.layout.activity_alimento_item,
+                        alimentoController.listaAliimentosPesquisa(newText)
                 )
         );
         return false;
-    }
-    @SuppressLint("Range")
-    private ArrayList<String> listaAliimentosPesquisa(String pesguisa){
-        String sql = "SELECT * FROM taco_4___edicao WHERE Alimento LIKE ?";
-
-        Cursor c = sqLiteDatabase.rawQuery(sql, new String[] {"%" + pesguisa + "%"});
-        ArrayList<String> result = new ArrayList<>();
-
-
-        c.moveToFirst();
-        while (!c.isAfterLast()){
-            result.add(c.getString(c.getColumnIndex("Alimento")));
-            c.moveToNext();
-        }
-        return result;
     }
 }
