@@ -1,4 +1,3 @@
-
 CREATE TABLE `taco_4___edicao` (
   `id` int DEFAULT NULL,
   `Caterogia` varchar(37) DEFAULT NULL,
@@ -29,7 +28,7 @@ CREATE TABLE `taco_4___edicao` (
   `Piridoxinamg` varchar(5) DEFAULT NULL,
   `Niacinamg` varchar(5) DEFAULT NULL,
   `VitaminaCmg` varchar(5) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+)
 
 --
 -- Extraindo dados da tabela `taco_4___edicao`
